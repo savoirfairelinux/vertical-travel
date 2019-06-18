@@ -24,6 +24,7 @@ from openerp.tests.common import TransactionCase
 from openerp.osv.orm import except_orm
 from openerp.tools.misc import DEFAULT_SERVER_DATE_FORMAT
 from openerp.tools.translate import _
+from datetime import datetime
 
 from openerp.addons.travel_journey.report.travel_journey_webkit \
     import travel_journey_report
@@ -63,12 +64,16 @@ class test_journey(TransactionCase):
             self.cr, self.uid, {'name': 't_job_name'}, context=self.context
         )
         employee_object = self.registry('hr.employee')
-        employee_object.create(
-            self.cr,
-            self.uid,
-            {'name': 't_employee', 'user_id': user_id, 'job_id': job_id},
-            context=self.context
-        )
+        employee_object.create(self.cr, self.uid, {
+            'name': 't_employee',
+            'user_id': user_id,
+            'job_id': job_id,
+            'employee_job_ids': [(0, 0, {
+                    'job_id': self.ref('hr.job_developer'),
+                    'date_start_allocation':
+                        datetime.today().strftime('%Y-%m-%d')
+            })]
+        }, context=self.context)
         self.passenger_id = self.passenger_model.create(self.cr, self.uid, {
             'partner_id': user.partner_id.id,
             'travel_id': self.travel_id,
