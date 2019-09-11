@@ -69,7 +69,7 @@ class test_journey(TransactionCase):
             'user_id': user_id,
             'job_id': job_id,
             'employee_job_ids': [(0, 0, {
-                    'job_id': self.ref('hr.job_developer'),
+                    'job_id': job_id,
                     'date_start_allocation':
                         datetime.today().strftime('%Y-%m-%d')
             })]
