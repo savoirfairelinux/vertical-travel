@@ -492,7 +492,7 @@ msgid "NAME"
 msgstr "NOM"
 
 #. module: travel_journey
-#: model:ir.actions.act_window,name:travel_journey.action_travels_journey_gantt_view
+#: model:ir.actions.act_window,name:travel_journey.action_travels_journey_tree_view
 #: model:ir.ui.menu,name:travel_journey.menu_journey
 #: view:travel.journey:0
 #: view:travel.passenger:0

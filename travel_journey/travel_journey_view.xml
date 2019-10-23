@@ -103,8 +103,7 @@
       <field name="model">travel.journey</field>
       <field name="arch" type="xml">
         <search string="Search Journeys">
-          <group string="Group by..." expand="1">
-            <filter name="travel_group" string="Travel" context="{'group_by': 'travel'}" />
+          <group string="Group by..." expand="0">
             <filter name="passenger_group" string="Passenger" context="{'group_by': 'passenger_id'}" />
           </group>
         </search>
@@ -112,13 +111,13 @@
     </record>
 
     <!-- Actions -->
-    <record model="ir.actions.act_window" id="action_travels_journey_gantt_view">
+    <record model="ir.actions.act_window" id="action_travels_journey_tree_view">
       <field name="name">Journeys</field>
-      <field name="view_id" ref="travel_journey_gantt_view"/>
+      <field name="view_id" ref="travel_journey_list_view"/>
       <field name="res_model">travel.journey</field>
-      <field name="view_mode">gantt,tree</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
       <field name="search_view_id" ref="travel_journey_search" />
-      <field name="context">{'search_default_travel_group': 1, 'search_default_passenger_group': 1}</field>
     </record>
 
     <!-- Menus -->
@@ -126,7 +125,7 @@
               id="menu_journey"
               groups="travel.group_basic_travel_user"
               parent="travel.menu_travel_main_form"
-              action="action_travels_journey_gantt_view"/>
+              action="action_travels_journey_tree_view"/>
 
   </data>
 </openerp>
